@@ -1,0 +1,102 @@
+﻿@model IEnumerable<JHilburnFabricManager.Models.FabricViewModel>
+@{
+    ViewBag.Title = "FabricList";
+}
+
+<h2>Fabric List</h2>
+
+<div class="btn btn-primary pull-right" style="margin-bottom:10px" onclick="location.href='@Url.Action("AddEditFabric", "Home", new { id = 0 })'"><span>Add New Fabric</span></div>
+
+<table class="table">
+    <tr>
+        <th>
+            @*@Html.ActionLink("Add New Fabric", "AddEditFabric", new { id = 0 })*@
+        </th>
+        <th>
+            SKU
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Active
+        </th>
+        <th>
+            Inventory (@Html.ActionLink("Manage Inventory", "ManageFabricInventory"))
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var fabric in Model)
+    {
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => fabric.Description)*@
+                @if (fabric.ImageUrl != null)
+                {
+                    var imgSrc = fabric.ImageUrl;
+                    <a href="#" onclick="location.href='@Url.Action("AddEditFabric", "Home", new { id = fabric.Id })'">
+                        <img id="@fabric.Id" src="@imgSrc" alt="@fabric.Sku" style="cursor:default" title="@fabric.Description" />
+                    </a>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => fabric.Sku)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => fabric.Category)
+            </td>
+            <td>
+                @Html.CheckBoxFor(modelItem => fabric.Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => fabric.Inventory)
+            </td>
+            <td>
+                <a href="#" class="btn btn-info" onclick="location.href='@Url.Action("AddEditFabric", "Home", new { id = fabric.Id })'"><span class="glyphicon glyphicon-edit" title="Update"></span></a>
+                <a href="#" class="btn btn-info deleteFabric" data-id="@fabric.Id"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
+            </td>
+        </tr>
+    }
+</table>
+<div id='myModal' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div> 
+
+    <script>
+        //Delete confirmation dialogue box-----------------------------
+        var deleteFAbricUrl = '/Home/Delete';
+        $(function(){
+            $(".deleteFabric").click(function(){
+                debugger;
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                var options = {"backdrop": "static", keyword: true};
+                $.ajax({
+                    type: "GET",
+                    url: deleteFAbricUrl,
+                    contentType: "application/json; charset=utf-8",
+                    data: { "Id": id },
+                    datatype: "json",
+                    success: function (data) {
+                        debugger;
+                        $('#myModalContent').html(data);
+                        $('#myModal').modal(options);
+                        $('#myModal').modal('show');
+
+                    },
+                    error: function () {
+                        alert("Dynamic content load failed.");
+                    }
+                });
+            }); 
+            $("#closbtn").click(function () {
+                debugger;
+                $('#myModal').modal('hide');
+            });
+        });
+
+    </script>

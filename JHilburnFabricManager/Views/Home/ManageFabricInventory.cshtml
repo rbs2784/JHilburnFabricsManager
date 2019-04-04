@@ -1,0 +1,45 @@
+﻿@model IEnumerable<JHilburnFabricManager.Models.FabricViewModel>
+
+@{
+    ViewBag.Title = "Fabric Inventory";
+}
+
+<h2>Fabric Inventory Management</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Fabric
+        </th>
+        <th>
+            Inventory
+        </th>
+    </tr>
+    @foreach (var fabric in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => fabric.Description)
+               
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => fabric.Inventory)
+                <a href="#" class="btn btn-sm" onclick="location.href='@Url.Action("AddEditFabric", "Home", new { id = fabric.Id })'"><span class="glyphicon glyphicon-edit" title="Update"></span></a>
+            </td>
+        </tr>
+    }
+</table>
+<table class="table">
+    <tr>
+        <td><strong>Total Inventory:</strong></td>
+        <td><strong>@ViewBag.TotalInventory</strong></td>
+    </tr>
+</table>
+<hr/>
+<div>
+    @Html.ActionLink("Back to List", "FabricList")
+</div>
+
+<script type="text/javascript">
+    var totalFabricInventory = '@ViewBag.TotalInventory'
+</script>

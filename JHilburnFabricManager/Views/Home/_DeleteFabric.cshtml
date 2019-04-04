@@ -1,0 +1,14 @@
+﻿@model JHilburnFabricManager.Models.FabricViewModel
+
+<div>
+    <div class="modal-header">
+        <button id="closbtn" type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+        <h4 class="modal-title" id="deleteModalLabel">Delete Confirmation</h4>
+    </div>
+    <span class="text-center" style="margin-left:20px">Are u sure u want to delete fabric: <strong>@Model.Description</strong></span> 
+
+    <div class="modal-footer">
+        <a href="#" class="btn btn-info" onclick="location.href='@Url.Action("DeleteFabric", "Home", new { id = Model.Id })'"><p>Yes</p></a>
+        <a href="#" class="btn btn-info" data-dismiss="modal"><p>No</p></a>
+    </div>
+</div>
