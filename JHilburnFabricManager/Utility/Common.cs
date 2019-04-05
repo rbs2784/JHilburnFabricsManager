@@ -18,12 +18,7 @@ namespace JHilburnFabricManager.Utility
 
             var request = new RestRequest();
             request.Resource = resource;
-
-            //if (parameters != null)
-            //{
-            //    foreach (var parameter in parameters)
-            //        request.AddParameter(parameter.Key, parameter.Value, ParameterType.UrlSegment);
-            //}
+            
             request.Method = method;
             request.AddHeader("Content-type", "application/json");
             request.AddHeader("x-api-auth", "F1467AA76C4776F69D165BD598812");

@@ -41,7 +41,7 @@ namespace JHilburnFabricManager.Models
         [Required(ErrorMessage = "Please enter a fabric image url")]
         [Display(Name = "Image Url")]
         [JsonProperty("imgUrl")]
-        public string ImageUrl { get; set; }
+        public string ImgUrl { get; set; }
 
         [Required(ErrorMessage = "Please enter a fabric count")]
         [Display(Name = "Inventory Count")]

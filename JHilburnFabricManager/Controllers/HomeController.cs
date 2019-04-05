@@ -106,11 +106,14 @@ namespace JHilburnFabricManager.Controllers
         }
 
         #region Helpers
+
+        //returns to the main list page
         private ActionResult RedirectToMainPage()
         {
             return RedirectToAction("FabricList", "Home");
         }
 
+        //gets all fabric lists
         public List<FabricViewModel> GetFabrics()
         {
             var url = "/fabrics";
@@ -121,6 +124,7 @@ namespace JHilburnFabricManager.Controllers
             return result;
         }
 
+        //get selected fabric details by id
         private FabricViewModel GetFabricById(int id)
         {
             FabricViewModel model = null;

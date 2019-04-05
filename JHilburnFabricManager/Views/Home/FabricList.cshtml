@@ -9,8 +9,7 @@
 
 <table class="table">
     <tr>
-        <th>
-            @*@Html.ActionLink("Add New Fabric", "AddEditFabric", new { id = 0 })*@
+        <th>           
         </th>
         <th>
             SKU
@@ -31,9 +30,9 @@
         <tr>
             <td>
                 @*@Html.DisplayFor(modelItem => fabric.Description)*@
-                @if (fabric.ImageUrl != null)
+                @if (fabric.ImgUrl != null)
                 {
-                    var imgSrc = fabric.ImageUrl;
+                    var imgSrc = fabric.ImgUrl;
                     <a href="#" onclick="location.href='@Url.Action("AddEditFabric", "Home", new { id = fabric.Id })'">
                         <img id="@fabric.Id" src="@imgSrc" alt="@fabric.Sku" style="cursor:default" title="@fabric.Description" />
                     </a>
